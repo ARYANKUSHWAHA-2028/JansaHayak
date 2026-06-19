@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ scheme.name }}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h1>{{ scheme.name }}</h1>
+
+        <hr>
+
+        <p>
+            <strong>Description:</strong><br>
+            {{ scheme.description }}
+        </p>
+
+        <p>
+            <strong>State:</strong>
+            {{ scheme.state }}
+        </p>
+
+        <p>
+            <strong>Minimum Age:</strong>
+            {{ scheme.minimum_age }}
+        </p>
+
+        <p>
+            <strong>Maximum Income:</strong>
+            {{ scheme.maximum_income }}
+        </p>
+
+        <p>
+            <strong>Required Occupation:</strong>
+            {{ scheme.required_occupation }}
+        </p>
+
+        {% if scheme.official_link %}
+        <a href="{{ scheme.official_link }}"
+           target="_blank"
+           class="btn btn-success">
+
+            Visit Official Website
+
+        </a>
+        {% endif %}
+
+        <a href="/eligibility/"
+           class="btn btn-secondary mt-3">
+
+            Back to Eligibility
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

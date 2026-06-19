@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JanSahayak</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <a class="navbar-brand" href="/">
+            JanSahayak
+        </a>
+
+        <div class="d-flex align-items-center">
+
+            <a class="btn btn-light me-1"
+               href="/eligibility/">
+
+                Check Eligibility
+
+            </a>
+
+            <a class="btn btn-secondary me-1"
+               href="/schemes/">
+
+                Browse Schemes
+
+            </a>
+
+            {% if user.is_authenticated %}
+
+                <span class="text-white me-2">
+                    Welcome, {{ user.username }}
+                </span>
+
+                <a class="btn btn-warning me-1"
+                   href="/accounts/logout/">
+
+                    Logout
+
+                </a>
+
+            {% else %}
+
+                <a class="btn btn-success me-1"
+                   href="/accounts/login/">
+
+                    Login
+
+                </a>
+
+                <a class="btn btn-info me-1"
+                   href="/accounts/signup/">
+
+                    Sign Up
+
+                </a>
+
+            {% endif %}
+
+            <a class="btn btn-outline-light"
+               href="/admin/">
+
+                Admin
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container text-center mt-5">
+
+    <h1 class="display-4">
+
+        Welcome to JanSahayak
+
+    </h1>
+
+    <p class="lead mt-4">
+
+        Find government schemes you may be eligible for
+        based on your age, occupation, income, and other criteria.
+
+    </p>
+
+    <a href="/eligibility/"
+       class="btn btn-primary btn-lg mt-3">
+
+        Check Eligibility
+
+    </a>
+
+</div>
+
+<div class="container mt-5">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="card shadow p-3">
+
+                <h4>Government Schemes</h4>
+
+                <p>
+
+                    Explore various welfare schemes available
+                    for citizens.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow p-3">
+
+                <h4>Eligibility Check</h4>
+
+                <p>
+
+                    Instantly discover schemes matching your profile.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow p-3">
+
+                <h4>Trusted Information</h4>
+
+                <p>
+
+                    Access official scheme details and links.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

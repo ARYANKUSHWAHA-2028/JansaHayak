@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eligibility Questionnaire</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="/">
+            JanSahayak
+        </a>
+
+        <div>
+
+            <a class="btn btn-light me-2" href="/">
+                Home
+            </a>
+
+            <a class="btn btn-outline-light" href="/admin/">
+                Admin
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">
+        JanSahayak Eligibility Questionnaire
+    </h1>
+
+    <div class="card p-4 shadow">
+
+        <form method="GET">
+
+            <div class="mb-3">
+
+    <label class="form-label">State</label>
+
+    <select class="form-select" name="state">
+
+        <option value="">
+            Select State
+        </option>
+
+        <option value="Andhra Pradesh" {% if request.GET.state == "Andhra Pradesh" %}selected{% endif %}>Andhra Pradesh</option>
+
+        <option value="Arunachal Pradesh" {% if request.GET.state == "Arunachal Pradesh" %}selected{% endif %}>Arunachal Pradesh</option>
+
+        <option value="Assam" {% if request.GET.state == "Assam" %}selected{% endif %}>Assam</option>
+
+        <option value="Bihar" {% if request.GET.state == "Bihar" %}selected{% endif %}>Bihar</option>
+
+        <option value="Chhattisgarh" {% if request.GET.state == "Chhattisgarh" %}selected{% endif %}>Chhattisgarh</option>
+
+        <option value="Goa" {% if request.GET.state == "Goa" %}selected{% endif %}>Goa</option>
+
+        <option value="Gujarat" {% if request.GET.state == "Gujarat" %}selected{% endif %}>Gujarat</option>
+
+        <option value="Haryana" {% if request.GET.state == "Haryana" %}selected{% endif %}>Haryana</option>
+
+        <option value="Himachal Pradesh" {% if request.GET.state == "Himachal Pradesh" %}selected{% endif %}>Himachal Pradesh</option>
+
+        <option value="Jharkhand" {% if request.GET.state == "Jharkhand" %}selected{% endif %}>Jharkhand</option>
+
+        <option value="Karnataka" {% if request.GET.state == "Karnataka" %}selected{% endif %}>Karnataka</option>
+
+        <option value="Kerala" {% if request.GET.state == "Kerala" %}selected{% endif %}>Kerala</option>
+
+        <option value="Madhya Pradesh" {% if request.GET.state == "Madhya Pradesh" %}selected{% endif %}>Madhya Pradesh</option>
+
+        <option value="Maharashtra" {% if request.GET.state == "Maharashtra" %}selected{% endif %}>Maharashtra</option>
+
+        <option value="Manipur" {% if request.GET.state == "Manipur" %}selected{% endif %}>Manipur</option>
+
+        <option value="Meghalaya" {% if request.GET.state == "Meghalaya" %}selected{% endif %}>Meghalaya</option>
+
+        <option value="Mizoram" {% if request.GET.state == "Mizoram" %}selected{% endif %}>Mizoram</option>
+
+        <option value="Nagaland" {% if request.GET.state == "Nagaland" %}selected{% endif %}>Nagaland</option>
+
+        <option value="Odisha" {% if request.GET.state == "Odisha" %}selected{% endif %}>Odisha</option>
+
+        <option value="Punjab" {% if request.GET.state == "Punjab" %}selected{% endif %}>Punjab</option>
+
+        <option value="Rajasthan" {% if request.GET.state == "Rajasthan" %}selected{% endif %}>Rajasthan</option>
+
+        <option value="Sikkim" {% if request.GET.state == "Sikkim" %}selected{% endif %}>Sikkim</option>
+
+        <option value="Tamil Nadu" {% if request.GET.state == "Tamil Nadu" %}selected{% endif %}>Tamil Nadu</option>
+
+        <option value="Telangana" {% if request.GET.state == "Telangana" %}selected{% endif %}>Telangana</option>
+
+        <option value="Tripura" {% if request.GET.state == "Tripura" %}selected{% endif %}>Tripura</option>
+
+        <option value="Uttar Pradesh" {% if request.GET.state == "Uttar Pradesh" %}selected{% endif %}>Uttar Pradesh</option>
+
+        <option value="Uttarakhand" {% if request.GET.state == "Uttarakhand" %}selected{% endif %}>Uttarakhand</option>
+
+        <option value="West Bengal" {% if request.GET.state == "West Bengal" %}selected{% endif %}>West Bengal</option>
+
+    </select>
+
+</div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Age</label>
+
+                <input type="number"
+                       class="form-control"
+                       name="age"
+                       value="{{ request.GET.age }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+
+                <select class="form-select" name="gender">
+
+                    <option value="Male"
+                        {% if request.GET.gender == "Male" %}selected{% endif %}>
+                        Male
+                    </option>
+
+                    <option value="Female"
+                        {% if request.GET.gender == "Female" %}selected{% endif %}>
+                        Female
+                    </option>
+
+                    <option value="Other"
+                        {% if request.GET.gender == "Other" %}selected{% endif %}>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Annual Family Income</label>
+
+                <input type="number"
+                       class="form-control"
+                       name="income"
+                       value="{{ request.GET.income }}">
+            </div>
+
+            <div class="mb-3">
+    <label class="form-label">Occupation</label>
+
+    <select class="form-select" name="occupation">
+
+        <option value=""
+            {% if request.GET.occupation == "" %}selected{% endif %}>
+            Select Occupation
+        </option>
+
+        <option value="Farmer"
+            {% if request.GET.occupation == "Farmer" %}selected{% endif %}>
+            Farmer
+        </option>
+
+        <option value="Student"
+            {% if request.GET.occupation == "Student" %}selected{% endif %}>
+            Student
+        </option>
+
+        <option value="Retired"
+            {% if request.GET.occupation == "Retired" %}selected{% endif %}>
+            Retired
+        </option>
+
+        <option value="Salaried Employee"
+            {% if request.GET.occupation == "Salaried Employee" %}selected{% endif %}>
+            Salaried Employee
+        </option>
+
+        <option value="Self-employed"
+            {% if request.GET.occupation == "Self-employed" %}selected{% endif %}>
+            Self-employed
+        </option>
+
+        <option value="Unemployed"
+            {% if request.GET.occupation == "Unemployed" %}selected{% endif %}>
+            Unemployed
+        </option>
+
+        <option value="Homemaker"
+            {% if request.GET.occupation == "Homemaker" %}selected{% endif %}>
+            Homemaker
+        </option>
+
+        <option value="Widow"
+            {% if request.GET.occupation == "Widow" %}selected{% endif %}>
+            Widow
+        </option>
+
+        <option value="Disabled"
+            {% if request.GET.occupation == "Disabled" %}selected{% endif %}>
+            Disabled
+        </option>
+
+    </select>
+
+</div>
+
+
+            <div class="form-check mb-2">
+
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="disability"
+                       {% if request.GET.disability %}checked{% endif %}>
+
+                <label class="form-check-label">
+                    Do you have a disability?
+                </label>
+
+            </div>
+
+            <div class="form-check mb-4">
+
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="widow"
+                       {% if request.GET.widow %}checked{% endif %}>
+
+                <label class="form-check-label">
+                    Are you widowed?
+                </label>
+
+            </div>
+
+            <button class="btn btn-primary">
+                Check Eligibility
+            </button>
+
+        </form>
+
+    </div>
+
+    <hr class="my-5">
+
+    <h2>Eligible Schemes</h2>
+
+    {% if eligible_schemes %}
+
+        {% for scheme in eligible_schemes %}
+
+            <div class="card mt-3 shadow-sm">
+
+                <div class="card-body">
+
+                    <h4 class="card-title">
+                        {{ scheme.name }}
+                    </h4>
+
+                    <p class="card-text">
+                        {{ scheme.description }}
+                    </p>
+
+                    <p>
+                        <strong>State:</strong>
+                        {{ scheme.state }}
+                    </p>
+
+                    <p>
+                        <strong>Minimum Age:</strong>
+                        {{ scheme.minimum_age }}
+                    </p>
+
+                   <a href="/schemes/{{ scheme.id }}/"
+   class="btn btn-primary">
+
+    View Details
+
+</a>
+
+
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+<form method="GET" action="/eligibility/download-pdf/">
+
+    {% for scheme in eligible_schemes %}
+
+        <input type="hidden"
+               name="schemes"
+               value="{{ scheme.name }}">
+
+    {% endfor %}
+
+    <button type="submit" class="btn btn-danger mt-3">
+
+        Download PDF Report
+
+    </button>
+
+</form>
+
+
+    {% elif request.GET %}
+
+        <div class="alert alert-warning mt-3">
+
+            No matching schemes found.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

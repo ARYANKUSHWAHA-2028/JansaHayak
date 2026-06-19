@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Government Schemes</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="/">
+            JanSahayak
+        </a>
+
+        <div>
+
+            <a class="btn btn-light me-2"
+               href="/">
+
+                Home
+
+            </a>
+
+            <a class="btn btn-outline-light"
+               href="/eligibility/">
+
+                Check Eligibility
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container mt-5">
+
+    <h1 class="mb-4">
+
+        Government Schemes
+
+    </h1>
+
+    <div class="mb-4">
+
+        <input type="text"
+               id="searchInput"
+               class="form-control"
+               placeholder="Search schemes by name...">
+
+    </div>
+
+   <div class="mb-4">
+
+    <button class="btn btn-outline-primary filter-btn me-2"
+            data-filter="all">
+
+        All
+
+    </button>
+
+    <button class="btn btn-outline-primary filter-btn me-2"
+            data-filter="student">
+
+        Student
+
+    </button>
+
+    <button class="btn btn-outline-primary filter-btn me-2"
+            data-filter="farmer">
+
+        Farmer
+
+    </button>
+
+    <button class="btn btn-outline-primary filter-btn me-2"
+            data-filter="retired">
+
+        Retired
+
+    </button>
+
+    <button class="btn btn-outline-primary filter-btn me-2"
+            data-filter="widow">
+
+        Widow
+
+    </button>
+
+    <button class="btn btn-outline-primary filter-btn"
+            data-filter="disabled">
+
+        Disabled
+
+    </button>
+
+</div>
+
+
+
+    {% if schemes %}
+
+        <div class="row">
+
+            {% for scheme in schemes %}
+
+            <div class="col-md-6 mb-4 scheme-card"
+     data-occupation="{{ scheme.required_occupation|lower }}">
+
+
+                <div class="card shadow h-100">
+
+                    <div class="card-body">
+
+                        <h4 class="scheme-name">
+
+                            {{ scheme.name }}
+
+                        </h4>
+
+                        <p>
+
+                            {{ scheme.description|truncatewords:20 }}
+
+                        </p>
+
+                        <p>
+
+                            <strong>State:</strong>
+
+                            {{ scheme.state }}
+
+                        </p>
+
+                        <a href="/schemes/{{ scheme.id }}/"
+                           class="btn btn-primary">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-warning">
+
+            No schemes available.
+
+        </div>
+
+    {% endif %}
+    
+{% if schemes.has_other_pages %}
+
+<nav class="mt-4">
+
+    <ul class="pagination justify-content-center">
+
+        {% if schemes.has_previous %}
+
+            <li class="page-item">
+
+                <a class="page-link"
+                   href="?page={{ schemes.previous_page_number }}">
+
+                    Previous
+
+                </a>
+
+            </li>
+
+        {% endif %}
+
+        {% for num in schemes.paginator.page_range %}
+
+            {% if schemes.number == num %}
+
+                <li class="page-item active">
+
+                    <span class="page-link">
+
+                        {{ num }}
+
+                    </span>
+
+                </li>
+
+            {% else %}
+
+                <li class="page-item">
+
+                    <a class="page-link"
+                       href="?page={{ num }}">
+
+                        {{ num }}
+
+                    </a>
+
+                </li>
+
+            {% endif %}
+
+        {% endfor %}
+
+        {% if schemes.has_next %}
+
+            <li class="page-item">
+
+                <a class="page-link"
+                   href="?page={{ schemes.next_page_number }}">
+
+                    Next
+
+                </a>
+
+            </li>
+
+        {% endif %}
+
+    </ul>
+
+</nav>
+
+{% endif %}
+
+
+</div>
+
+<script>
+
+let currentFilter = 'all';
+
+function applyFilters() {
+
+    let searchValue = document
+        .getElementById('searchInput')
+        .value
+        .toLowerCase();
+
+    let cards = document.querySelectorAll('.scheme-card');
+
+    cards.forEach(function(card) {
+
+        let schemeName = card
+            .querySelector('.scheme-name')
+            .textContent
+            .toLowerCase();
+
+        let occupation = card
+            .dataset
+            .occupation
+            .toLowerCase();
+
+        let matchesSearch = schemeName.includes(searchValue);
+
+        let matchesFilter =
+            currentFilter === 'all' ||
+            occupation === currentFilter ||
+            occupation === 'any';
+
+        if (matchesSearch && matchesFilter) {
+
+            card.style.display = '';
+
+        } else {
+
+            card.style.display = 'none';
+
+        }
+
+    });
+
+}
+
+document.getElementById('searchInput')
+    .addEventListener('keyup', applyFilters);
+
+document.querySelectorAll('.filter-btn')
+    .forEach(function(button) {
+
+        button.addEventListener('click', function() {
+
+            currentFilter = this.dataset.filter;
+
+            applyFilters();
+
+        });
+
+    });
+
+</script>
+
+
+</body>
+</html>
